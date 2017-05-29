@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import MyEditor from './MyEditor'
 import logo from './logo.svg';
 import './css/App.css';
+import './css/Editor.css';
+import 'draft-js/dist/Draft.css'
 
 class App extends Component {
   render() {
