@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import 'draft-js-hashtag-plugin/lib/plugin.css'
@@ -12,14 +13,21 @@ const plugins = [
 
 class EditorPluginExample extends Component {
 
-  state = {
-    editorState: EditorState.createEmpty(),
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      editorState: EditorState.createEmpty()
+    };
+  }
 
   onChange = (editorState) => {
     this.setState({
       editorState,
     });
+
+    if (this.props.onChange)
+      this.props.onChange(editorState);
   };
 
   render() {
@@ -31,6 +39,10 @@ class EditorPluginExample extends Component {
       />
     );
   }
+}
+
+EditorPluginExample.propTypes = {
+  onChange: PropTypes.func
 }
 
 export default EditorPluginExample;

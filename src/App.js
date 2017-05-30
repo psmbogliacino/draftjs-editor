@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Demos from './Demos'
+//import Demos from './Demos'
+import WebTreeEditor from './WebtreeEditor/WebTreeEditor'
 import logo from './logo.svg';
 import './css/App.css';
 import './css/Editor.css';
@@ -17,7 +18,7 @@ class App extends Component {
           Article:
 
           <div className="editor-wrapper">
-          <Demos />
+          <WebTreeEditor />
           </div>
         </div>
       </div>

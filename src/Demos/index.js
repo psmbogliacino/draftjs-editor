@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import DemoBox from '../DemoBox'
 //import BoldExmple from './BoldExample'
 //import LinkExmple from './Examples/LinkExample'
@@ -9,13 +9,24 @@ import EditorPluginExample from './EditorPluginExample'
 
 
 class Demo extends Component {
- 
+
+  constructor(props) {
+    super(props);
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(editorState) {
+    console.log(editorState);
+  }
 
   render() {
     return (
       <div>
         <DemoBox title="Plugins">
-            <EditorPluginExample />
+          <EditorPluginExample onChange={this.onChange}>
+            hola mundo
+          </EditorPluginExample>
         </DemoBox>
 
 
