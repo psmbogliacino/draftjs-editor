@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import MyEditor from './MyEditor'
+import Demos from './Demos'
 import logo from './logo.svg';
 import './css/App.css';
 import './css/Editor.css';
-import 'draft-js/dist/Draft.css'
+
 
 class App extends Component {
   render() {
@@ -17,7 +17,7 @@ class App extends Component {
           Article:
 
           <div className="editor-wrapper">
-          <MyEditor />
+          <Demos />
           </div>
         </div>
       </div>
