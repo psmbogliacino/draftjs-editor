@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+#root{
+  padding:15px;
+}
+
 
 
 .demobox-title{

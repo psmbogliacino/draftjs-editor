@@ -1,48 +1,82 @@
+import _ from 'lodash'
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import Editor from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import 'draft-js-hashtag-plugin/lib/plugin.css'
-import { EditorState } from 'draft-js';
+import { EditorState, ContentState, convertFromHTML } from 'draft-js';
 
-const hashtagPlugin = createHashtagPlugin();
+import TextToolbarPlugin from './Plugins/TextToolbarPlugin'
+import ImagePlugin from './Plugins/ImagePlugin'
 
-const plugins = [
-  hashtagPlugin
-];
+let plugins = [];
+let components = [];
 
-class WebTreeEditor  extends Component {
+plugins = _.concat(plugins, TextToolbarPlugin.plugin);
+components = _.concat(components, TextToolbarPlugin.component);
 
-  constructor(props) {
-    super(props);
+plugins = _.concat(plugins, ImagePlugin.plugin);
+components = _.concat(components, ImagePlugin.component);
 
-    this.state = {
-      editorState: EditorState.createEmpty()
+
+
+const ExtraComponents = components.map((item, index) => {<item key={index} />})
+
+
+console.log(plugins)
+
+class WebTreeEditor extends Component {
+
+    constructor(props) {
+        super(props);
+
+        const editorState = createEditorState(props);
+
+        this.state = {
+            editorState: editorState
+        };
+    }
+
+    onChange = (editorState) => {
+        this.setState({
+            editorState,
+        });
+
+        if (this.props.onChange)
+            this.props.onChange(editorState);
     };
-  }
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
-
-    if (this.props.onChange)
-      this.props.onChange(editorState);
-  };
-
-  render() {
-    return (
-      <Editor
-        editorState={this.state.editorState}
-        onChange={this.onChange}
-        plugins={plugins}
-      />
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Editor
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    plugins={plugins}
+                />
+                <TextToolbarPlugin.component />
+                <ImagePlugin.component />
+            </div>
+        );
+    }
 }
 
 WebTreeEditor.propTypes = {
-  onChange: PropTypes.func
+    onChange: PropTypes.func
 }
 
+
+
+const createEditorState = (props) => {
+
+    if (props.children) {
+        const blocks = convertFromHTML(props.children);
+        const contentState = ContentState.createFromBlockArray(blocks);
+        return EditorState.createWithContent(contentState);
+    }
+    else if (props.contentState) {
+        return EditorState.createWithContent(props.contentState);
+    }
+    else {
+        return EditorState.createEmpty()
+    }
+}
 export default WebTreeEditor;
