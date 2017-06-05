@@ -6,25 +6,43 @@ import { EditorState, ContentState, convertFromHTML } from 'draft-js';
 
 import TextToolbarPlugin from './Plugins/TextToolbarPlugin'
 import ImagePlugin from './Plugins/ImagePlugin'
-
-let plugins = [];
-let components = [];
-
-plugins = _.concat(plugins, TextToolbarPlugin.plugin);
+import editorStyles from './editorStyles.css';
+ 
+let plugins =
+    [        
+        ImagePlugin.plugin.blockDndPlugin,
+        ImagePlugin.plugin.focusPlugin,
+        ImagePlugin.plugin.alignmentPlugin,
+        ImagePlugin.plugin.resizeablePlugin,
+        ImagePlugin.plugin.imagePlugin
+    ];
+    
+/*plugins = _.concat(plugins, TextToolbarPlugin.plugin);
 components = _.concat(components, TextToolbarPlugin.component);
 
 plugins = _.concat(plugins, ImagePlugin.plugin);
 components = _.concat(components, ImagePlugin.component);
 
 
-
-const ExtraComponents = components.map((item, index) => {<item key={index} />})
-
-
 console.log(plugins)
-
+*/
 class WebTreeEditor extends Component {
+ state = {
+    editorState: EditorState.createWithContent(this.props.contentState),
+  };
 
+   onChange = (editorState) => {
+      console.log('onChange');
+    this.setState({
+      editorState,
+    });
+  };
+
+  focus = () => {
+    this.editor.focus();
+  };
+
+/*
     constructor(props) {
         super(props);
 
@@ -36,24 +54,34 @@ class WebTreeEditor extends Component {
     }
 
     onChange = (editorState) => {
+        console.log('onChange');
         this.setState({
             editorState,
         });
 
         if (this.props.onChange)
             this.props.onChange(editorState);
+            
     };
 
+
+    focus = () => {
+        this.editor.focus();
+    }
+    */
     render() {
         return (
             <div>
-                <Editor
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
-                    plugins={plugins}
-                />
-                <TextToolbarPlugin.component />
-                <ImagePlugin.component />
+                <div  onClick={this.focus}>
+                    <Editor
+                        editorState={this.state.editorState}
+                        onChange={this.onChange}
+                        plugins={plugins}
+                        ref={(element) => { this.editor = element; }}
+                    />
+
+                    <ImagePlugin.component />
+                </div>
             </div>
         );
     }

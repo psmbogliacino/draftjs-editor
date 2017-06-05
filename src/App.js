@@ -6,7 +6,7 @@ import { convertToRaw } from 'draft-js'
 import './css/App.css';
 import './css/Editor.css';
 import initialState from './initialState'
-
+import Demo from './Demos/ImageExample'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,24 +35,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-intro">
-          <h1>Demo</h1>
 
 
-          <div className="editor-wrapper">
-            <WebTreeEditor onChange={this.handleEditorChange} contentState={initialState.image} >
+      <div className="editor-wrapper">
+        <WebTreeEditor  contentState={initialState.image} >
 
-            </WebTreeEditor>
+        </WebTreeEditor>
 
 
-            <div className="wtp-toolbar">
+        <div className="wtp-toolbar">
 
-              <button onClick={this.handleShowHtmlClick}>Show Html</button>
-            </div>
-
-          </div>
+          <button onClick={this.handleShowHtmlClick}>Show Html</button>
         </div>
+
       </div>
     );
   }
@@ -60,5 +55,6 @@ class App extends Component {
 
 
 
-export default App;
+export default App
+  ;
 
