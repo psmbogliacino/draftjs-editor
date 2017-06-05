@@ -1,6 +1,9 @@
+import 'draft-js-image-plugin/lib/plugin.css'
+import 'draft-js-alignment-plugin/lib/plugin.css'
+import 'draft-js-focus-plugin/lib/plugin.css'
+
 import React, { Component } from 'react';
 import {
-  convertFromRaw,
   EditorState,
 } from 'draft-js';
 // eslint-disable-next-line import/no-unresolved
@@ -16,8 +19,8 @@ import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
 // eslint-disable-next-line import/no-unresolved
-import editorStyles from './editorStyles.css';
 
+import editorStyles from './editorStyles.css';
 import initialState from '../initialState'
 
 const focusPlugin = createFocusPlugin();
@@ -34,7 +37,6 @@ const decorator = composeDecorators(
 );
 const imagePlugin = createImagePlugin({ decorator });
 
-
 const plugins = [
   blockDndPlugin,
   focusPlugin,
@@ -43,7 +45,6 @@ const plugins = [
   imagePlugin
 ]; 
 
-
 export default class CustomImageEditor extends Component {
 
   state = {
@@ -51,7 +52,6 @@ export default class CustomImageEditor extends Component {
   };
 
   onChange = (editorState) => {
-      console.log('onChange');
     this.setState({
       editorState,
     });
@@ -64,7 +64,7 @@ export default class CustomImageEditor extends Component {
   render() {
     return (
       <div>
-        <div  onClick={this.focus}>
+        <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}

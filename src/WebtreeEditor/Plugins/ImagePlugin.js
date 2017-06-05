@@ -1,4 +1,3 @@
-import React from 'react'
 import { composeDecorators } from 'draft-js-plugins-editor'
 
 import 'draft-js-image-plugin/lib/plugin.css'
@@ -17,10 +16,6 @@ import createResizeablePlugin from 'draft-js-resizeable-plugin';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
 // eslint-disable-next-line import/no-unresolved
 
-
-
-
-
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
 const blockDndPlugin = createBlockDndPlugin();
@@ -35,17 +30,17 @@ const decorator = composeDecorators(
 );
 
 
-const imagePlugin = createImagePlugin(decorator);
+const imagePlugin = createImagePlugin({decorator});
 
 const image = {
     plugin:
-    {
+    [
         blockDndPlugin,
         focusPlugin,
         alignmentPlugin,
         resizeablePlugin,
         imagePlugin
-    },
+    ],
     component: AlignmentTool
 }
 

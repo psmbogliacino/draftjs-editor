@@ -35,7 +35,7 @@ const config = {
 
 const inlineToolbarPlugin = createInlineToolbarPlugin(config);
 
-const toolbar = {
+const text = {
     plugin:
     [
         inlineToolbarPlugin
@@ -45,5 +45,5 @@ const toolbar = {
 
 
 
-export default toolbar;
+export default text;
 
