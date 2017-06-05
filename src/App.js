@@ -38,16 +38,13 @@ class App extends Component {
 
 
       <div className="editor-wrapper">
-        <WebTreeEditor  contentState={initialState.image} >
-
-        </WebTreeEditor>
-
 
         <div className="wtp-toolbar">
 
           <button onClick={this.handleShowHtmlClick}>Show Html</button>
         </div>
 
+        <WebTreeEditor contentState={initialState.image} onChange={this.handleEditorChange} />
       </div>
     );
   }
@@ -55,5 +52,5 @@ class App extends Component {
 
 
 
-export default App ;
+export default App;
 

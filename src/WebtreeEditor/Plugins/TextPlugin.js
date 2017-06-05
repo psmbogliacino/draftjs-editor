@@ -13,7 +13,11 @@ import {
     UnorderedListButton,
     OrderedListButton,
     BlockquoteButton,
-    CodeBlockButton
+    CodeBlockButton,
+    AlignBlockDefaultButton,
+    AlignBlockCenterButton,
+    AlignBlockLeftButton,
+    AlignBlockRightButton
 } from 'draft-js-buttons'
 
 
@@ -29,7 +33,11 @@ const config = {
         UnorderedListButton,
         OrderedListButton,
         BlockquoteButton,
-        CodeBlockButton
+        CodeBlockButton,
+        AlignBlockDefaultButton,
+        AlignBlockCenterButton,
+        AlignBlockLeftButton,
+        AlignBlockRightButton
     ]
 }
 

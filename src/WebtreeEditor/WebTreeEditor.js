@@ -42,7 +42,7 @@ class WebTreeEditor extends Component {
     render() {
         return (
             <div>
-                <div onClick={this.focus}>
+                <div className="wtp-editor" onClick={this.focus}>
                     <Editor
                         editorState={this.state.editorState}
                         onChange={this.onChange}
